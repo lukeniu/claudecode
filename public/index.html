@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Transcription & Summary</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Voice Transcription & Summary</h1>
+      <p class="subtitle">Record or upload audio to get a transcription and AI-powered summary</p>
+    </header>
+
+    <main>
+      <!-- Recording Section -->
+      <section class="card recorder-section">
+        <h2>1. Record or Upload Audio</h2>
+
+        <div class="recorder-controls">
+          <button id="recordBtn" class="btn btn-record">
+            <span class="icon" id="recordIcon">&#9679;</span>
+            <span id="recordLabel">Start Recording</span>
+          </button>
+          <div id="timer" class="timer hidden">00:00</div>
+        </div>
+
+        <div class="divider"><span>or</span></div>
+
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="fileInput" accept="audio/*,.webm,.wav,.mp3,.ogg,.flac,.mp4" hidden>
+          <p>Drag & drop an audio file here, or <button class="link-btn" id="browseBtn">browse</button></p>
+          <p class="hint">Supports WAV, MP3, WebM, OGG, FLAC (max 25MB)</p>
+        </div>
+
+        <div id="audioPreview" class="audio-preview hidden">
+          <audio id="audioPlayer" controls></audio>
+          <button id="clearAudioBtn" class="btn btn-small btn-secondary">Clear</button>
+        </div>
+      </section>
+
+      <!-- Transcribe Section -->
+      <section class="card" id="transcribeSection">
+        <h2>2. Transcribe</h2>
+        <button id="transcribeBtn" class="btn btn-primary" disabled>Transcribe Audio</button>
+
+        <div id="transcriptionResult" class="result hidden">
+          <div class="result-header">
+            <h3>Transcription</h3>
+            <div class="result-meta" id="transcriptionMeta"></div>
+          </div>
+          <div class="result-body" id="transcriptionText"></div>
+          <button id="copyTranscriptBtn" class="btn btn-small btn-secondary">Copy Text</button>
+        </div>
+      </section>
+
+      <!-- Summary Section -->
+      <section class="card" id="summarySection">
+        <h2>3. Summarize</h2>
+        <button id="summarizeBtn" class="btn btn-primary" disabled>Generate Summary</button>
+
+        <div id="summaryResult" class="result hidden">
+          <div class="result-header">
+            <h3>Summary</h3>
+          </div>
+          <div class="result-body" id="summaryText"></div>
+          <button id="copySummaryBtn" class="btn btn-small btn-secondary">Copy Summary</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+      <div class="spinner"></div>
+      <p id="loadingMessage">Processing...</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
