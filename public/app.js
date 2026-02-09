@@ -19,6 +19,7 @@
   const summaryResult = document.getElementById("summaryResult");
   const summaryText = document.getElementById("summaryText");
   const copySummaryBtn = document.getElementById("copySummaryBtn");
+  const languageSelect = document.getElementById("languageSelect");
   const loadingOverlay = document.getElementById("loadingOverlay");
   const loadingMessage = document.getElementById("loadingMessage");
 
@@ -190,6 +191,10 @@
     const formData = new FormData();
     const ext = audioBlob.type.includes("webm") ? ".webm" : audioBlob.type.includes("ogg") ? ".ogg" : ".wav";
     formData.append("audio", audioBlob, `recording${ext}`);
+    const selectedLang = languageSelect.value;
+    if (selectedLang) {
+      formData.append("language", selectedLang);
+    }
 
     try {
       const res = await fetch("/api/transcribe", {

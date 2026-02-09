@@ -64,15 +64,21 @@ app.post("/api/transcribe", upload.single("audio"), async (req, res) => {
   }
 
   const filePath = req.file.path;
+  const language = req.body.language || "";
 
   try {
     const openai = getOpenAIClient();
 
-    const transcription = await openai.audio.transcriptions.create({
+    const whisperOptions = {
       file: fs.createReadStream(filePath),
       model: "whisper-1",
       response_format: "verbose_json",
-    });
+    };
+    if (language) {
+      whisperOptions.language = language;
+    }
+
+    const transcription = await openai.audio.transcriptions.create(whisperOptions);
 
     res.json({
       text: transcription.text,

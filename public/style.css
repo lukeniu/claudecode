@@ -221,6 +221,34 @@ header h1 {
   height: 36px;
 }
 
+/* Language select */
+.language-select {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.language-select label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.language-select select {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.language-select select:hover {
+  border-color: var(--primary);
+}
+
 /* Results */
 .result {
   margin-top: 1rem;
